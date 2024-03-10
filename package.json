@@ -1,5 +1,5 @@
 {
-  "name": "2708-node-lib-md",
+  "name": "senai-node-lib-md",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,14 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alura-cursos/2708-node-lib-md.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alura-cursos/2708-node-lib-md/issues"
-  },
-  "homepage": "https://github.com/alura-cursos/2708-node-lib-md#readme"
+  "license": "ISC"
 }
+  
