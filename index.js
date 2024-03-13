@@ -18,19 +18,49 @@ import chalk from 'chalk';
 
 //2)tratamento de erros, função para tratar os erros
 function trataErro(erro){
+    console.log(erro);
     throw new Error(chalk.red(erro.code,"não há arquivo no diretório"));
 }
 
-//1) escever uma function que traga arquivos .md
-function pegaArquivo(caminhoDoArquivo){
-    const encoding="utf-8";
-    fs.readFile(caminhoDoArquivo,encoding,(erro,texto)=>{
-        if(erro){
-            trataErro(erro)
-        }
-        console.log(chalk.green(texto));
-    })
+// //1) escever uma function que traga arquivos .md
+// function pegaArquivo(caminhoDoArquivo){
+//     const encoding="utf-8";
+//     fs.readFile(caminhoDoArquivo,encoding,(erro,texto)=>{
+//         if(erro){
+//             trataErro(erro)
+//         }
+//         console.log(chalk.green(texto));
+//     })
+// }
+
+// pegaArquivo('./arquivos/');
+// //callback(erro,texto)
+
+//----------------------aula sobre Promessas ----inserir método assíncrono no código
+//1) reescrevendo (refatorando)
+// function pegaArquivo(caminhoDoArquivo){
+//     const encoding='utf-8';
+//     fs.promises.readFile(caminhoDoArquivo,encoding)
+//     .then((texto)=>console.log(chalk
+//     .yellow(texto)))
+//     .catch((erro)=>trataErro(erro));
+// }
+// pegaArquivo('./arquivos/texto.md');
+
+//-----------usando outra forma de solucionar as promessas (async/await)
+
+async function pegaArquivo(caminhoDoArquivo){
+    try{
+        const encoding ="utf-8";
+        const texto= await fs.promises.readFile(caminhoDoArquivo,encoding);
+        console.log(chalk.cyan(texto));
+    } catch (erro) {
+        trataErro(erro);
+    } finally {
+        console.log(chalk.magenta('Operação concluída'));
+    }
+
 }
 
 pegaArquivo('./arquivos/texto.md');
-//callback(erro,texto)
+//pegaArquivo('./arquivos/');
