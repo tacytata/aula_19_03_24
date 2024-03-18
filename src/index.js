@@ -87,5 +87,6 @@ async function pegaArquivo(caminhoDoArquivo){
 
 }
 export default pegaArquivo;
+console.log('oi');
 //pegaArquivo('./arquivos/texto.md');
 //pegaArquivo('./arquivos/');
