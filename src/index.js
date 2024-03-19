@@ -21,7 +21,7 @@ function extraiLinks (texto){
 
     //console.log(capturas);
     //console.log(resultados);
-    return resultados;
+    return resultados.length!==0?resultados:"Não há links no arquivo";
 
 }
 
@@ -78,7 +78,8 @@ async function pegaArquivo(caminhoDoArquivo){
     try{
         const encoding ="utf-8";
         const texto= await fs.promises.readFile(caminhoDoArquivo,encoding);
-        console.log(extraiLinks(texto));
+        //1) console.log(extraiLinks(texto));
+        return extraiLinks(texto);
     } catch (erro) {
         trataErro(erro);
     } finally {
