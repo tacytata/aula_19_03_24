@@ -5,9 +5,6 @@ import fs from 'fs';
 import chalk from "chalk";
 import listaValidada from "./http-validacao.js";
 
-
-
-
 //1) criar uma variável para recepcionar o caminho via terminal
 const caminho=process.argv;
 //console.log(caminho);
@@ -15,19 +12,14 @@ const caminho=process.argv;
 
 //pegaArquivo(caminho[2]);
 
-    function imprimeLista(valida, resultado, identificador=""){
+    async function imprimeLista(valida, resultado, identificador=""){
         if(valida){
-            console.log(chalk.yellow('Lista de links'),chalk.black.bgGreen(identificador),listaValidada(resultado));
+            console.log(chalk.yellow('Lista de links'),chalk.black.bgGreen(identificador),await listaValidada(resultado));
         }else{
             console.log(chalk.yellow('Lista de links'),chalk.black.bgGreen(identificador),resultado);
         }
 
-
-
-
-
-        
-       }
+ }
 
 //função assíncrona
 async function processaTexto(argumentos){
@@ -35,7 +27,6 @@ async function processaTexto(argumentos){
 
     const valida = argumentos[3];
     
-
     try{
         fs.statSync(caminho)
 
@@ -49,7 +40,7 @@ async function processaTexto(argumentos){
     }
     if(fs.lstatSync(caminho).isFile()){
         const resultado =await pegaArquivo(caminho);
-        imprimeLista(resultado);
+        imprimeLista(valida,resultado);
 //console.log(chalk.yellow('lista de links'),resultado);
     }else if(fs.lstatSync(caminho).isDirectory()){
         const arquivos=await fs.promises.readdir(caminho);
